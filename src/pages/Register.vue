@@ -59,6 +59,7 @@
 
 <script lang="ts">
 import { ref } from "vue";
+import axios from "axios";
 
 export default {
   name: "Register",
@@ -70,14 +71,22 @@ export default {
     const password = ref("");
     const passwordConfirm = ref("");
 
-    const submit = () =>
-      console.log({
-        firstName: firstName.value,
-        lastName: lastName.value,
+    const submit = async () => {
+      const user = {
+        first_name: firstName.value,
+        last_name: lastName.value,
         email: email.value,
         password: password.value,
-        passwordConfirm: passwordConfirm.value,
-      });
+        password_confirm: passwordConfirm.value,
+      };
+
+      const { data } = await axios.post(
+        "http://localhost:8000/api/register",
+        user
+      );
+
+      console.log(data);
+    };
 
     return { firstName, lastName, email, password, passwordConfirm, submit };
   },
