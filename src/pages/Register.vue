@@ -1,9 +1,10 @@
 <template>
   <main class="form-signin">
-    <form>
+    <form @submit.prevent="submit">
       <h1 class="h3 mb-3 fw-normal">Please register yourself</h1>
       <label for="inputFirstName" class="visually-hidden">First name</label>
       <input
+        v-model="firstName"
         type="text"
         id="inputFirstName"
         class="form-control"
@@ -13,6 +14,7 @@
       />
       <label for="inputLastName" class="visually-hidden">Last name</label>
       <input
+        v-model="lastName"
         type="text"
         id="inputLastName"
         class="form-control"
@@ -21,6 +23,7 @@
       />
       <label for="inputEmail" class="visually-hidden">Email address</label>
       <input
+        v-model="email"
         type="email"
         id="inputEmail"
         class="form-control"
@@ -29,28 +32,57 @@
       />
       <label for="inputPassword" class="visually-hidden">Password</label>
       <input
+        v-model="password"
         type="password"
         id="inputPassword"
         class="form-control"
         placeholder="Password"
         required
       />
-      <label for="inputConfirmPassword" class="visually-hidden"
+      <label for="inputPasswordConfirm" class="visually-hidden"
         >Confirm Password</label
       >
       <input
+        v-model="passwordConfirm"
         type="password"
-        id="inputConfirmPassword"
+        id="inputPasswordConfirm"
         class="form-control"
         placeholder="Confirm Password"
         required
       />
       <button class="w-100 btn btn-lg btn-primary" type="submit">
-        Register
+        Submit
       </button>
     </form>
   </main>
 </template>
+
+<script lang="ts">
+import { ref } from "vue";
+
+export default {
+  name: "Register",
+
+  setup() {
+    const firstName = ref("");
+    const lastName = ref("");
+    const email = ref("");
+    const password = ref("");
+    const passwordConfirm = ref("");
+
+    const submit = () =>
+      console.log({
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+        passwordConfirm: passwordConfirm.value,
+      });
+
+    return { firstName, lastName, email, password, passwordConfirm, submit };
+  },
+};
+</script>
 
 <style scoped>
 html,
