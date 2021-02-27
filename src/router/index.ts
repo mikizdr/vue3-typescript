@@ -4,23 +4,31 @@ import Dashboard from "@/pages/Dashboard.vue";
 import Users from "@/pages/Users.vue";
 import Register from "@/pages/Register.vue";
 import Counter from "@/pages/Counter.vue";
+import Wrapper from "@/pages/Wrapper.vue";
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: "/",
-    component: Dashboard,
-  },
-  {
-    path: "/users",
-    component: Users,
-  },
   {
     path: "/register",
     component: Register,
   },
+
   {
-    path: "/counter",
-    component: Counter,
+    path: "",
+    component: Wrapper,
+    children: [
+      {
+        path: "",
+        component: Dashboard,
+      },
+      {
+        path: "/users",
+        component: Users,
+      },
+      {
+        path: "/counter",
+        component: Counter,
+      },
+    ],
   },
 ];
 
