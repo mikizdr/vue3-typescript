@@ -15,6 +15,11 @@
             Users
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/counter" class="nav-link" active-class="active">
+            Counter
+          </router-link>
+        </li>
       </ul>
     </div>
   </nav>
