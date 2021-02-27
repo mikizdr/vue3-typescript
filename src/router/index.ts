@@ -5,11 +5,16 @@ import Users from "@/pages/Users.vue";
 import Register from "@/pages/Register.vue";
 import Counter from "@/pages/Counter.vue";
 import Wrapper from "@/pages/Wrapper.vue";
+import Login from "@/pages/Login.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/login",
+    component: Login,
   },
 
   {
