@@ -1,6 +1,6 @@
 <template>
   <main class="form-signin">
-    <form @click.prevent="login">
+    <form @submit.prevent="login">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
       <label for="inputEmail" class="visually-hidden">Email address</label>
       <input

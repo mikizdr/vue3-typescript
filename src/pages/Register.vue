@@ -60,6 +60,7 @@
 <script lang="ts">
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Register",
@@ -70,6 +71,7 @@ export default {
     const email = ref("");
     const password = ref("");
     const passwordConfirm = ref("");
+    const router = useRouter();
 
     const submit = async () => {
       const user = {
@@ -80,12 +82,9 @@ export default {
         password_confirm: passwordConfirm.value,
       };
 
-      const { data } = await axios.post(
-        "http://localhost:8000/api/register",
-        user
-      );
+      await axios.post("http://localhost:8000/api/register", user);
 
-      console.log(data);
+      await router.push("/login");
     };
 
     return { firstName, lastName, email, password, passwordConfirm, submit };
