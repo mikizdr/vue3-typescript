@@ -2,6 +2,29 @@
   <router-view />
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+
+export default defineComponent({
+  name: "App",
+
+  setup() {
+    const router = useRouter();
+    onMounted(async () => {
+      try {
+        const { data } = await axios.get("user");
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+        await router.push("/login");
+      }
+    });
+  },
+});
+</script>
+
 <style>
 body {
   font-size: 0.875rem;

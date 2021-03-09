@@ -11,7 +11,12 @@
         class="nav-p-2 text-white text-decoration-none"
         >{{ name }}</router-link
       >
-      <a class="nav-p-2 text-white text-decoration-none" href="#">Sign out</a>
+      <router-link
+        to="/login"
+        class="nav-p-2 text-white text-decoration-none"
+        @click="logout"
+        >Sign out</router-link
+      >
     </nav>
   </header>
 </template>
@@ -30,7 +35,11 @@ export default defineComponent({
       name.value = `${data.first_name} ${data.last_name}`;
     });
 
-    return { name };
+    const logout = async () => {
+      await axios.post("logout");
+    };
+
+    return { name, logout };
   },
 });
 </script>
