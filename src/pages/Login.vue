@@ -52,9 +52,7 @@ export default {
         password: loginData.password,
       };
 
-      await axios.post("http://localhost:8000/api/login", user, {
-        withCredentials: true,
-      });
+      await axios.post("login", user);
 
       await router.push("/");
     };

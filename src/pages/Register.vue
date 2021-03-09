@@ -82,7 +82,7 @@ export default {
         password_confirm: passwordConfirm.value,
       };
 
-      await axios.post("http://localhost:8000/api/register", user);
+      await axios.post("register", user);
 
       await router.push("/login");
     };
