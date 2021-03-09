@@ -4,7 +4,7 @@
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
       <label for="inputEmail" class="visually-hidden">Email address</label>
       <input
-        v-model="email"
+        v-model="loginData.email"
         type="email"
         id="inputEmail"
         class="form-control"
@@ -14,7 +14,7 @@
       />
       <label for="inputPassword" class="visually-hidden">Password</label>
       <input
-        v-model="password"
+        v-model="loginData.password"
         type="password"
         id="inputPassword"
         class="form-control"
@@ -30,7 +30,8 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
 import axios from "axios";
 
@@ -38,24 +39,27 @@ export default {
   name: "Login",
 
   setup() {
-    const email = ref("");
-    const password = ref("");
+    const loginData = reactive({
+      email: "",
+      password: "",
+    });
+
+    const router = useRouter();
 
     const login = async () => {
       const user = {
-        email: email.value,
-        password: password.value,
+        email: loginData.email,
+        password: loginData.password,
       };
 
-      const { data } = await axios.post(
-        "http://localhost:8000/api/login",
-        user
-      );
+      await axios.post("http://localhost:8000/api/login", user, {
+        withCredentials: true,
+      });
 
-      console.log(data);
+      await router.push("/");
     };
 
-    return { email, password, login };
+    return { loginData, login };
   },
 };
 </script>
