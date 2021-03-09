@@ -1,4 +1,10 @@
 <template>
+  <div class="pt-3 pb-2 mb-3 border-bottm">
+    <router-link to="/users/create" class="btn btn-sm btn-outline-secondary"
+      >Add User</router-link
+    >
+  </div>
+
   <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
