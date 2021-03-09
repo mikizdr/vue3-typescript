@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 import Dashboard from "@/pages/Dashboard.vue";
-import Users from "@/pages/Users.vue";
+import Users from "@/pages/users/Users.vue";
 import Register from "@/pages/Register.vue";
 import Counter from "@/pages/Counter.vue";
 import Wrapper from "@/pages/Wrapper.vue";
