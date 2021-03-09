@@ -15,6 +15,8 @@
 <script>
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
+import { onMounted } from "vue";
+import axios from "axios";
 
 export default {
   name: "Wrapper",
@@ -22,6 +24,13 @@ export default {
   components: {
     Nav,
     Header,
+  },
+
+  setup() {
+    onMounted(async () => {
+      const { data } = await axios.get("user");
+      console.log(data);
+    });
   },
 };
 </script>

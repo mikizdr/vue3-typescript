@@ -5,27 +5,32 @@
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
       >Company name</a
     >
-    <button
-      class="navbar-toggler position-absolute d-md-none collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#sidebarMenu"
-      aria-controls="sidebarMenu"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <input
-      class="form-control form-control-dark w-100"
-      type="text"
-      placeholder="Search"
-      aria-label="Search"
-    />
-    <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-        <a class="nav-link" href="#">Sign out</a>
-      </li>
-    </ul>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <router-link
+        to="/profile"
+        class="nav-p-2 text-white text-decoration-none"
+        >{{ name }}</router-link
+      >
+      <a class="nav-p-2 text-white text-decoration-none" href="#">Sign out</a>
+    </nav>
   </header>
 </template>
+
+<script lang="ts">
+import { defineComponent, onMounted, ref } from "vue";
+import axios from "axios";
+
+export default defineComponent({
+  name: "Header",
+
+  setup() {
+    const name = ref("");
+    onMounted(async () => {
+      const { data } = await axios.get("user");
+      name.value = `${data.first_name} ${data.last_name}`;
+    });
+
+    return { name };
+  },
+});
+</script>
