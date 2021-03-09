@@ -24,8 +24,14 @@
           <td>{{ user.role.name }}</td>
           <td>
             <div class="btn-group mr-2">
+              <router-link
+                :to="`/users/update/${user.id}`"
+                class="btn btn-sm btn-outline-warning ms-2"
+              >
+                Edit
+              </router-link>
               <button
-                class="btn btn-sm btn-outline-secondary"
+                class="btn btn-sm btn-outline-secondary ms-2"
                 @click="deleteUser(user.id)"
               >
                 Delete
