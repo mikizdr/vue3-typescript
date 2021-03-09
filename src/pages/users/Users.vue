@@ -16,7 +16,16 @@
           <td>{{ user.first_name }} {{ user.last_name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role.name }}</td>
-          <td>actions</td>
+          <td>
+            <div class="btn-group mr-2">
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                @click="deleteUser(user.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -39,6 +48,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from "vue";
 import axios from "axios";
+import { User } from "@/interfaces/User";
 
 export default defineComponent({
   name: "Users",
@@ -52,6 +62,13 @@ export default defineComponent({
       const { data } = await axios.get(`users?page=${page.value}`);
       users.value = data.data;
       lastPage.value = data.meta.last_page;
+    };
+
+    const deleteUser = async (id: number): Promise<void> => {
+      if (confirm("Are you sure you want to delete the user?")) {
+        await axios.delete(`users/${id}`);
+        users.value = users.value.filter((user: User) => user.id !== id);
+      }
     };
 
     watch(page, loadUsers);
@@ -68,7 +85,7 @@ export default defineComponent({
       page.value--;
     };
 
-    return { users, next, prev };
+    return { users, next, prev, deleteUser };
   },
 });
 </script>
