@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, watch } from "vue";
 import axios from "axios";
 
 export default defineComponent({
@@ -50,24 +50,22 @@ export default defineComponent({
 
     const loadUsers = async (): Promise<void> => {
       const { data } = await axios.get(`users?page=${page.value}`);
-      console.log(data);
-      console.log(page.value);
       users.value = data.data;
       lastPage.value = data.meta.last_page;
     };
 
+    watch(page, loadUsers);
+
     onMounted(loadUsers);
 
-    const next = async () => {
+    const next = () => {
       if (page.value === lastPage.value) return;
       page.value++;
-      await loadUsers();
     };
 
-    const prev = async () => {
+    const prev = () => {
       if (page.value === 1) return;
       page.value--;
-      await loadUsers();
     };
 
     return { users, next, prev };
