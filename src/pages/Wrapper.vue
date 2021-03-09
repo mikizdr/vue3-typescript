@@ -15,10 +15,10 @@
 <script>
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
-import { onMounted } from "vue";
+import { defineComponent, onMounted } from "vue";
 import axios from "axios";
 
-export default {
+export default defineComponent({
   name: "Wrapper",
 
   components: {
@@ -32,5 +32,5 @@ export default {
       console.log(data);
     });
   },
-};
+});
 </script>

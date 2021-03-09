@@ -58,11 +58,11 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-export default {
+export default defineComponent({
   name: "Register",
 
   setup() {
@@ -89,7 +89,7 @@ export default {
 
     return { firstName, lastName, email, password, passwordConfirm, submit };
   },
-};
+});
 </script>
 
 <style scoped>

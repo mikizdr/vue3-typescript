@@ -30,12 +30,12 @@
 </template>
 
 <script lang="ts">
-import { reactive } from "vue";
+import { defineComponent, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 import axios from "axios";
 
-export default {
+export default defineComponent({
   name: "Login",
 
   setup() {
@@ -59,7 +59,7 @@ export default {
 
     return { loginData, login };
   },
-};
+});
 </script>
 
 <style scoped>

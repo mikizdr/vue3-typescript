@@ -4,9 +4,9 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
   name: "Counter",
 
   setup() {
@@ -16,5 +16,5 @@ export default {
       counter,
     };
   },
-};
+});
 </script>
